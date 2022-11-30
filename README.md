@@ -19,4 +19,4 @@
 1) `javac Main.java`
 2) `java Main.java`
 
-#### P.S желательно запускать через готовые копиляторы (IntelliJ IDEA, Eclipse и тд) 
+#### P.S желательно запускать через готовые компиляторы (IntelliJ IDEA, Eclipse и тд) 
