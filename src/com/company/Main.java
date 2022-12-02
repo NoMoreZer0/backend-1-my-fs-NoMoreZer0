@@ -58,6 +58,10 @@ public class Main {
             System.out.println("true");
             return;
         }
+        if (ret == ERR_NO_PATH) {
+            handleError(ret);
+            return;
+        }
         System.out.println("false");
     }
 
@@ -127,7 +131,7 @@ public class Main {
         int ret = checkPermissions(perm);
         if (ret == 0) {
             boolean err = file.setReadable(perm.charAt(0) != '-') | file.setWritable(perm.charAt(1) != '-') | file.setExecutable(perm.charAt(2) != '-');
-            if (err) ret = ERR_EXEC;
+            if (!err) ret = ERR_EXEC;
         }
         return ret;
     }
@@ -208,7 +212,7 @@ public class Main {
     public static int createBackup(String userPath) {
         File file = new File(userPath);
         if (!file.exists()) return ERR_NO_PATH;
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy");
         Date date = new Date();
         String currentDate = formatter.format(date);
         File backupFile = new File("/tmp/" + currentDate + ".backup");
